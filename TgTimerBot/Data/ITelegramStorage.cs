@@ -24,7 +24,7 @@ namespace TgTimerBot.Data
         /// <param name="foods">IntervalsFood configuration object</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns>Task representing async operation</returns>
-        public Task SaveUserSettingsAsync(long chatID, string typeFood, Interval foods, ILogger logger, CancellationToken ct);
+        public Task SaveUserSettingsAsync(long chatID, IFood food, ILogger logger, CancellationToken ct);
         /// <summary>
         /// Check that config is exist
         /// </summary>
@@ -32,6 +32,6 @@ namespace TgTimerBot.Data
         /// <param name="typeFood">Meat or Egg</param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public Task<bool> IsConfigExist(long? chatID, string typeFood, ILogger logger, CancellationToken ct);
+        public Task<bool> IsConfigExist(long? chatID, IFood typeFood, ILogger logger, CancellationToken ct);
     }
 }
