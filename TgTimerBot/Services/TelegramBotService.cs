@@ -11,7 +11,7 @@ namespace TgTimerBot.Services
 {
     public class TelegramBotService : ITelegramService
     {
-        readonly private IUserState userState;
+        readonly private Dictionary<long, IUserState> _userState;
         readonly private ITelegramBotClient botClient;
         public Task HandleUpdateAsync(Update update, CancellationToken ct)
         {

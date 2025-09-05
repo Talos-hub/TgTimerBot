@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TgTimerBot.Models
 {
     /// <summary>
-    /// It contains a two type time for food
+    /// It contains two type time of food
     /// </summary>
     public class IntervalsFood
     {
