@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TgTimerBot.Models;
 
-namespace TgTimerBot.Services
+namespace TgTimerBot.Data
 {
     public interface ITelegramStorege
     {
