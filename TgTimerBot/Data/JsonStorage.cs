@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace TgTimerBot.Data
 {
-    public class JsonStorge : ITelegramStorege
+    public class JsonStorage : ITelegramStorage
     {
         public Task<bool> IsConfigExist(long? chatID, IFood typeFood, ILogger logger, CancellationToken ct)
         {
