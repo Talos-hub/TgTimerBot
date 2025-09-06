@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace TgTimerBot.Data
 {
-    public interface ITelegramStorege
+    public interface ITelegramStorage
     {
         /// <summary>
         /// LoadIntervalsAsync loads configuration which contains <see cref="IntervalsFood"/>
         /// </summary>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public Task<Interval> LoadIntervalAsync(string path, ILogger logger, CancellationToken ct);
+        public Task<IFood> LoadIntervalAsync(long? chatID, string typeFood, CancellationToken ct = default);
         /// <summary>
         /// Saves user settings with food intervals configuration
         /// </summary>
@@ -24,7 +24,7 @@ namespace TgTimerBot.Data
         /// <param name="foods">IntervalsFood configuration object</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns>Task representing async operation</returns>
-        public Task SaveUserSettingsAsync(long chatID, IFood food, ILogger logger, CancellationToken ct);
+        public Task SaveUserSettingsAsync(long? chatID, IFood food, CancellationToken ct = default);
         /// <summary>
         /// Check that config is exist
         /// </summary>
@@ -32,6 +32,8 @@ namespace TgTimerBot.Data
         /// <param name="typeFood">Meat or Egg</param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public Task<bool> IsConfigExist(long? chatID, IFood typeFood, ILogger logger, CancellationToken ct);
+        public bool IsConfigExist(long? chatID, string typeFood);
+
+        
     }
 }

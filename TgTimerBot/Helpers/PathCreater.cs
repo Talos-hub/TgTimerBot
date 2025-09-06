@@ -27,23 +27,23 @@ namespace TgTimerBot.Helpers
         /// <param name="typeFood">the type of food</param>
         /// <param name="logger">Logger instance</param>
         /// <returns>path to the config </returns>
-        public static string CreatePathToConfig(long? chatId, IFood typeFood, ILogger logger)
+        public static string CreatePathToConfig(long? chatId, string typeFood, ILogger logger)
         {
            
 
             // if typeFood name is null or empty we throw exception
-            if (string.IsNullOrEmpty(typeFood.Name)) 
+            if (string.IsNullOrEmpty(typeFood)) 
             {
                 const string errorMessage = "Type food cannot be null or empty";
                 logger.LogError("Error creating path: {ErrorMessage}", errorMessage);
-                throw new ArgumentException(errorMessage, nameof(typeFood.Name));
+                throw new ArgumentException(errorMessage, nameof(typeFood));
             }
             
             // if chat id is null it create defalut path
             if (chatId is null)
             {
                 logger.LogWarning("Using default path for null chat id");
-                switch (typeFood.Name)
+                switch (typeFood)
                 {
                     case "Meat":
                         return DefaultMeatPath;
@@ -57,7 +57,7 @@ namespace TgTimerBot.Helpers
             }
 
             // for example: 23434547584Meat.json
-            string fileName = $"{chatId}{typeFood.Name}{JsonExtention}";
+            string fileName = $"{chatId}{typeFood}{JsonExtention}";
             string fullPath = Path.Combine(ConfigFolder, fileName);
 
             
@@ -82,6 +82,17 @@ namespace TgTimerBot.Helpers
             if (string.IsNullOrEmpty(path)) return false;
 
             return Path.GetExtension(path).Equals(".json", StringComparison.OrdinalIgnoreCase) && path.Length >= 6; // as json min
+        } 
+        public static void CreatFolder(string path)
+        {
+            // Get the directory part of the full file path
+            var directory = Path.GetDirectoryName(path);
+
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
         }
     }
 }

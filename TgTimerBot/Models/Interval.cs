@@ -25,5 +25,9 @@ namespace TgTimerBot.Models
             Name = typeFood;
         }
 
+        public Interval() 
+        {
+            Name = string.Empty;
+        }
     }
 }
